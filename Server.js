@@ -5,6 +5,7 @@ const { Server } = require("socket.io");
 const cors = require("cors");
 
 app.use(cors());
+app.options('*', cors());
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
@@ -12,11 +13,10 @@ const io = new Server(server, {
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
   },
-  
 });
-// server.listen(3002, () => {
-//   console.log("Server is running");
-// });
+server.listen(3002, () => {
+  console.log("Server is running");
+});
 
 var listObject = {};
 var listSocket = [];
