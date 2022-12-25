@@ -8,7 +8,7 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://63a880a6ceb41a5b3300d26a--famous-queijadas-5599ef.netlify.app",
+    origin: "https://poly-social.vercel.app",
     methods: ["GET", "POST"],
   },
 });
