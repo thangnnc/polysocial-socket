@@ -8,13 +8,13 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://63a880a6ceb41a5b3300d26a--famous-queijadas-5599ef.netlify.app",
     methods: ["GET", "POST"],
   },
 });
-server.listen(3002, () => {
-  console.log("Server is running");
-});
+// server.listen(3002, () => {
+//   console.log("Server is running");
+// });
 
 var listObject = {};
 var listSocket = [];
