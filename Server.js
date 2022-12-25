@@ -17,7 +17,8 @@ const io = new Server(server, {
 });
 
 console.log(PORT);
-app.get('/', (req, resp) => {
+
+app.get('/port', (req, resp) => {
   resp.write(`<h2>Socket start on port: ${PORT}</h2>`);
   resp.end();
 })
