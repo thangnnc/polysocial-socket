@@ -8,12 +8,9 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://poly-social.vercel.app",
-    methods: ["GET", "POST"],
-    allowRequest: (req, callback) => {
-      const noOriginHeader = req.headers.origin === undefined;
-      callback(null, noOriginHeader);
-    }
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
   },
   
 });
