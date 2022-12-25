@@ -10,7 +10,12 @@ const io = new Server(server, {
   cors: {
     origin: "https://poly-social.vercel.app",
     methods: ["GET", "POST"],
+    allowRequest: (req, callback) => {
+      const noOriginHeader = req.headers.origin === undefined;
+      callback(null, noOriginHeader);
+    }
   },
+  
 });
 // server.listen(3002, () => {
 //   console.log("Server is running");
