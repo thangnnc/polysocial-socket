@@ -14,9 +14,9 @@ const io = new Server(server, {
     credentials: true
   },
 });
-server.listen(3002, () => {
-  console.log("Server is running");
-});
+server.listen();
+io.listen(server);
+console.log("server",server.address().port)
 
 var listObject = {};
 var listSocket = [];
