@@ -85,11 +85,16 @@ io.on("connection", async function (socket) {
     console.log("User leave room: " + data);
   });
 
-  socket.on("send_message", (data) => {
+  socket.on("send_message", (data,roomStart) => {
     socket.broadcast.to(data.room).emit("recevie_message", data.content);
     socket.to(data.room).emit("recevie_message_name", listSocket);
+    socket.to(roomStart).emit("recevie_message_name", listSocket);
     socket.emit("recevie_message_name", listSocket);
     // socket.emit("recevie_message_name", listSocket);
+  });
+
+  socket.on("request_group", () => {
+    socket.broadcast.emit("reset_request_group");
   });
 
   socket.on("isSeen", () => {
@@ -98,6 +103,11 @@ io.on("connection", async function (socket) {
 
   socket.on("add_member_group", function () {
     io.sockets.emit("reset_member_group_successful", listSocket);
+  });
+
+  socket.on("add_member_group_one", function () {
+    io.sockets.emit("reset_member_group_successful", listSocket);
+    io.sockets.emit("reset_request_group_one", listSocket);
   });
 
   socket.on("create_group", function (userId) {
@@ -136,6 +146,10 @@ io.on("connection", async function (socket) {
 
   socket.on("I_stopped_typing_comment", (postId) => {
     socket.broadcast.emit("stop_user_typing_comment", "",postId);
+  });
+
+  socket.on("create_successful_exercises", function () {
+    io.sockets.emit("successful_exercises");
   });
 
   socket.on("disconnect", function () {
